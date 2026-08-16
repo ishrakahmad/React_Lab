@@ -1,12 +1,12 @@
 import PropTypes from 'prop-types';
 
-function CourseTag({ courseName, color }) {
+function CourseTag(props) {
   return (
     <span
       className="course-tag"
-      style={{ backgroundColor: color }}
+      style={{ backgroundColor: props.color }}
     >
-      {courseName}
+      {props.courseName}
     </span>
   );
 }

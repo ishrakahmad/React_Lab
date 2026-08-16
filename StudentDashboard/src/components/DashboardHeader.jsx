@@ -1,11 +1,11 @@
 import PropTypes from 'prop-types';
 
-function DashboardHeader({ title, tagline }) {
+function DashboardHeader(props) {
   return (
     <header className="dashboard-header">
       <div className="header-content">
-        <h1>{title}</h1>
-        <p>{tagline}</p>
+        <h1>{props.title}</h1>
+        <p>{props.tagline}</p>
       </div>
 
       <nav className="dashboard-nav">

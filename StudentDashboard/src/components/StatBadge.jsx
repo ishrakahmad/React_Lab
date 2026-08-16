@@ -1,10 +1,10 @@
 import PropTypes from 'prop-types';
 
-function StatBadge({ label, value }) {
+function StatBadge(props) {
   return (
     <div className="stat-badge">
-      <span className="stat-label">{label}</span>
-      <strong className="stat-value">{value}</strong>
+      <span className="stat-label">{props.label}</span>
+      <strong className="stat-value">{props.value}</strong>
     </div>
   );
 }
