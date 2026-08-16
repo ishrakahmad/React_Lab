@@ -1,8 +1,10 @@
 import DashboardHeader from './components/DashboardHeader';
 import StudentCard from './components/StudentCard';
 import StatBadge from './components/StatBadge';
+import SearchBar from './components/SearchBar';
+import { useEffect, useState } from 'react';
 
-const students = [
+const studentData = [
   {
     name: 'Ishrak',
     id: '101',
@@ -89,6 +91,23 @@ const students = [
 ];
 
 function App() {
+  const [students, setStudents] = useState([]);
+  const [loading, setLoading] = useState(true);
+  const [query, setQuery] = useState('');
+
+  useEffect(() => {
+    setTimeout(() => {
+      setStudents(studentData);
+      setLoading(false);
+    }, 1500);
+  }, []);
+
+  const filteredStudents = students.filter(
+    (student) =>
+      student.name.toLowerCase().includes(query.toLowerCase()) ||
+      student.major.toLowerCase().includes(query.toLowerCase())
+  );
+
   return (
     <>
       <DashboardHeader
@@ -98,26 +117,39 @@ function App() {
 
       <main className="dashboard-container">
 
-        <section className="dashboard-stats">
-          <StatBadge
-            label="Total Students"
-            value={students.length}
-          />
+        <SearchBar
+          query={query}
+          setQuery={setQuery}
+        />
 
-          <StatBadge
-            label="Average GPA"
-            value="3.75"
-          />
-        </section>
+        {loading ? (
+          <div className="loading">
+            Loading students...
+          </div>
+        ) : (
+          <>
+            <section className="dashboard-stats">
+              <StatBadge
+                label="Total Students"
+                value={students.length}
+              />
 
-        <section className="student-grid">
-          {students.map((student) => (
-            <StudentCard
-              key={student.id}
-              student={student}
-            />
-          ))}
-        </section>
+              <StatBadge
+                label="Average GPA"
+                value="3.75"
+              />
+            </section>
+
+            <section className="student-grid">
+              {filteredStudents.map((student) => (
+                <StudentCard
+                  key={student.id}
+                  student={student}
+                />
+              ))}
+            </section>
+          </>
+        )}
 
       </main>
     </>
