@@ -102,6 +102,9 @@ function App() {
       setLoading(false);
     }, 1500);
   }, []);
+ 
+  
+
 
   function handleFavoriteChange(isFavorite) {
     if (isFavorite) {
@@ -116,6 +119,11 @@ function App() {
       student.name.toLowerCase().includes(query.toLowerCase()) ||
       student.major.toLowerCase().includes(query.toLowerCase())
   );
+
+
+  useEffect(() => {
+    document.title = `Dashboard — ${filteredStudents.length} Students`;
+  }, [filteredStudents.length]);
 
   return (
     <>
