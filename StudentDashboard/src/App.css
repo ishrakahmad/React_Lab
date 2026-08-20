@@ -429,3 +429,116 @@
 .dark-theme .stat-value {
   color: var(--theme-text);
 }
+
+
+
+
+
+.student-form {
+  background: var(--card-bg, #ffffff);
+  border: 1px solid var(--border-color, #dbe3ee);
+  border-radius: 16px;
+  padding: 28px;
+  margin-bottom: 28px;
+  box-shadow: 0 10px 25px rgba(15, 23, 42, 0.06);
+}
+
+.student-form h2 {
+  margin: 0 0 22px;
+  font-size: 24px;
+  color: #111827;
+}
+
+.form-group {
+  margin-bottom: 18px;
+}
+
+.form-group label {
+  display: block;
+  margin-bottom: 7px;
+  font-weight: 600;
+  color: #475569;
+}
+
+.form-group input {
+  width: 100%;
+  box-sizing: border-box;
+  padding: 12px 14px;
+  border: 1px solid #dbe3ee;
+  border-radius: 10px;
+  font-size: 15px;
+  outline: none;
+  transition: 0.2s;
+}
+
+.form-group input:focus {
+  border-color: #2563eb;
+  box-shadow: 0 0 0 3px rgba(37, 99, 235, 0.1);
+}
+
+.form-error {
+  margin: 6px 0 0;
+  color: #dc2626;
+  font-size: 14px;
+}
+
+.student-form button {
+  border: none;
+  border-radius: 10px;
+  padding: 11px 20px;
+  background: #2563eb;
+  color: white;
+  font-size: 15px;
+  font-weight: 600;
+  cursor: pointer;
+  transition: 0.2s;
+}
+
+.student-form button:hover {
+  transform: translateY(-1px);
+  opacity: 0.9;
+}
+
+/* Student Form Theme */
+
+.student-form {
+  background: var(--theme-surface);
+  color: var(--theme-text);
+  border-color: var(--theme-border);
+}
+
+.student-form h2 {
+  color: var(--theme-text);
+}
+
+.form-group label {
+  color: var(--theme-muted);
+}
+
+.form-group input {
+  background: var(--theme-surface);
+  color: var(--theme-text);
+  border-color: var(--theme-border);
+}
+
+.form-group input::placeholder {
+  color: var(--theme-muted);
+}
+
+.form-group input:focus {
+  border-color: var(--color-primary);
+  box-shadow: 0 0 0 3px rgba(37, 99, 235, 0.1);
+}
+
+.form-error {
+  color: #ef4444;
+}
+
+.student-form button {
+  background: var(--color-primary);
+  color: #ffffff;
+}
+
+.student-form button:hover {
+  opacity: 0.9;
+}

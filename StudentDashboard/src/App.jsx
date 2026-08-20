@@ -3,6 +3,7 @@ import StudentCard from './components/StudentCard';
 import StatBadge from './components/StatBadge';
 import SearchBar from './components/SearchBar';
 import SortControls from './components/SortControls';
+import StudentForm from './components/StudentForm';
 import { useContext, useEffect, useState } from 'react';
 import { StudentContext } from './context/StudentContext';
 
@@ -143,6 +144,8 @@ function App() {
       />
 
       <main className="dashboard-container">
+
+        <StudentForm />
 
         <SearchBar />
 

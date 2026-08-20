@@ -98,6 +98,13 @@ function StudentProvider(props) {
     setStudents(studentData);
   }
 
+  function addStudent(student) {
+    setStudents((currentStudents) => [
+      ...currentStudents,
+      student,
+    ]);
+  }
+
   function handleFavoriteChange(studentId) {
     setFavorites((currentFavorites) => {
       if (currentFavorites.includes(studentId)) {
@@ -116,6 +123,7 @@ function StudentProvider(props) {
         students,
         setStudents,
         loadStudents,
+        addStudent,
 
         query,
         setQuery,
