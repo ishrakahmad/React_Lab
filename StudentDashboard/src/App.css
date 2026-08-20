@@ -335,3 +335,97 @@
 .sort-controls select:focus {
   border-color: var(--color-primary);
 }
+
+
+/* Theme */
+
+.light-theme {
+  min-height: 100vh;
+
+  --theme-background: #f8fafc;
+  --theme-surface: #ffffff;
+  --theme-text: #0f172a;
+  --theme-muted: #64748b;
+  --theme-border: #e2e8f0;
+}
+
+.dark-theme {
+  min-height: 100vh;
+
+  --theme-background: #0f172a;
+  --theme-surface: #1e293b;
+  --theme-text: #f8fafc;
+  --theme-muted: #cbd5e1;
+  --theme-border: #334155;
+}
+
+.light-theme,
+.dark-theme {
+  background: var(--theme-background);
+  color: var(--theme-text);
+}
+
+.dark-theme .dashboard-header,
+.dark-theme .stat-badge,
+.dark-theme .student-card,
+.dark-theme .search-bar input,
+.dark-theme .sort-controls select {
+  background: var(--theme-surface);
+  color: var(--theme-text);
+  border-color: var(--theme-border);
+}
+
+.dark-theme .header-content p,
+.dark-theme .student-major,
+.dark-theme .student-id,
+.dark-theme .stat-label {
+  color: var(--theme-muted);
+}
+
+.dark-theme .dashboard-nav a {
+  color: var(--theme-muted);
+}
+
+.dark-theme .dashboard-nav a:hover {
+  color: var(--color-primary);
+}
+
+.header-actions {
+  display: flex;
+  align-items: center;
+  gap: var(--spacing-lg);
+}
+
+.theme-button {
+  padding: 10px 14px;
+
+  border: 1px solid var(--color-border);
+  border-radius: var(--radius-md);
+
+  background: var(--color-surface);
+  color: var(--color-text);
+
+  font-size: var(--font-size-sm);
+  font-weight: 600;
+
+  cursor: pointer;
+}
+
+.theme-button:hover {
+  border-color: var(--color-primary);
+}
+
+.dark-theme h1,
+.dark-theme h2,
+.dark-theme .stat-value,
+.dark-theme .stat-badge strong {
+  color: var(--theme-text);
+}
+
+.dark-theme .student-card h2 {
+  color: var(--theme-text);
+}
+
+.dark-theme .stat-value {
+  color: var(--theme-text);
+}
