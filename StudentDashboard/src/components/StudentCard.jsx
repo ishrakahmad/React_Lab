@@ -1,8 +1,18 @@
 import PropTypes from 'prop-types';
+import { useState } from 'react';
 import CourseTag from './CourseTag';
 import StatBadge from './StatBadge';
 
 function StudentCard(props) {
+  const [favorite, setFavorite] = useState(false);
+
+  function handleFavorite() {
+    const newFavorite = !favorite;
+
+    setFavorite(newFavorite);
+    props.onFavoriteChange(newFavorite);
+  }
+
   return (
     <article className="student-card">
       <div className="student-avatar">
@@ -10,15 +20,28 @@ function StudentCard(props) {
       </div>
 
       <div className="student-info">
-        <h2>{props.student.name}</h2>
+        <div className="student-header">
+          <div>
+            <h2>{props.student.name}</h2>
 
-        <p className="student-major">
-          {props.student.major}
-        </p>
+            <p className="student-major">
+              {props.student.major}
+            </p>
 
-        <p className="student-id">
-          Student ID: {props.student.id}
-        </p>
+            <p className="student-id">
+              Student ID: {props.student.id}
+            </p>
+          </div>
+
+          <button
+            className={`favorite-button ${
+              favorite ? 'favorite-active' : ''
+            }`}
+            onClick={handleFavorite}
+          >
+            {favorite ? '♥' : '♡'}
+          </button>
+        </div>
 
         <div className="student-stats">
           <StatBadge
@@ -61,6 +84,8 @@ StudentCard.propTypes = {
       })
     ).isRequired,
   }).isRequired,
+
+  onFavoriteChange: PropTypes.func.isRequired,
 };
 
 export default StudentCard;

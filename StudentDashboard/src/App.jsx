@@ -94,6 +94,7 @@ function App() {
   const [students, setStudents] = useState([]);
   const [loading, setLoading] = useState(true);
   const [query, setQuery] = useState('');
+  const [favoriteCount, setFavoriteCount] = useState(0);
 
   useEffect(() => {
     setTimeout(() => {
@@ -101,6 +102,14 @@ function App() {
       setLoading(false);
     }, 1500);
   }, []);
+
+  function handleFavoriteChange(isFavorite) {
+    if (isFavorite) {
+      setFavoriteCount((count) => count + 1);
+    } else {
+      setFavoriteCount((count) => count - 1);
+    }
+  }
 
   const filteredStudents = students.filter(
     (student) =>
@@ -113,6 +122,7 @@ function App() {
       <DashboardHeader
         title="Student Dashboard"
         tagline="Manage and view student information"
+        favoriteCount={favoriteCount}
       />
 
       <main className="dashboard-container">
@@ -145,6 +155,7 @@ function App() {
                 <StudentCard
                   key={student.id}
                   student={student}
+                  onFavoriteChange={handleFavoriteChange}
                 />
               ))}
             </section>

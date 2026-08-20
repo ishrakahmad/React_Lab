@@ -285,3 +285,26 @@
 .search-bar input:focus {
   border-color: var(--color-primary);
 }
+
+.student-header {
+  display: flex;
+  justify-content: space-between;
+  gap: var(--spacing-md);
+}
+
+.favorite-button {
+  border: none;
+  background: transparent;
+  color: var(--color-muted);
+  font-size: 28px;
+  cursor: pointer;
+  padding: 4px;
+}
+
+.favorite-button:hover {
+  color: var(--color-primary);
+}
+
+.favorite-active {
+  color: #ef4444;
+}

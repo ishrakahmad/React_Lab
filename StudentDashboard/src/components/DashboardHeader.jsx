@@ -6,6 +6,10 @@ function DashboardHeader(props) {
       <div className="header-content">
         <h1>{props.title}</h1>
         <p>{props.tagline}</p>
+
+        <p className="favorite-count">
+          Favorites: {props.favoriteCount}
+        </p>
       </div>
 
       <nav className="dashboard-nav">
@@ -20,6 +24,7 @@ function DashboardHeader(props) {
 DashboardHeader.propTypes = {
   title: PropTypes.string.isRequired,
   tagline: PropTypes.string.isRequired,
+  favoriteCount: PropTypes.number.isRequired,
 };
 
 export default DashboardHeader;
