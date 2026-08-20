@@ -1,16 +1,19 @@
 import PropTypes from 'prop-types';
-import { useState } from 'react';
+import { useContext } from 'react';
 import CourseTag from './CourseTag';
 import StatBadge from './StatBadge';
+import { StudentContext } from '../context/StudentContext';
 
 function StudentCard(props) {
-  const [favorite, setFavorite] = useState(false);
+  const {
+    favorites,
+    handleFavoriteChange,
+  } = useContext(StudentContext);
+
+  const favorite = favorites.includes(props.student.id);
 
   function handleFavorite() {
-    const newFavorite = !favorite;
-
-    setFavorite(newFavorite);
-    props.onFavoriteChange(newFavorite);
+    handleFavoriteChange(props.student.id);
   }
 
   return (
@@ -84,8 +87,6 @@ StudentCard.propTypes = {
       })
     ).isRequired,
   }).isRequired,
-
-  onFavoriteChange: PropTypes.func.isRequired,
 };
 
 export default StudentCard;

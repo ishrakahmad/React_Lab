@@ -1,11 +1,14 @@
-import PropTypes from 'prop-types';
+import { useContext } from 'react';
+import { StudentContext } from '../context/StudentContext';
 
-function SortControls(props) {
+function SortControls() {
+  const { sortBy, setSortBy } = useContext(StudentContext);
+
   return (
     <div className="sort-controls">
       <select
-        value={props.sortBy}
-        onChange={(event) => props.setSortBy(event.target.value)}
+        value={sortBy}
+        onChange={(event) => setSortBy(event.target.value)}
       >
         <option value="default">Default</option>
         <option value="name">Name A-Z</option>
@@ -14,10 +17,5 @@ function SortControls(props) {
     </div>
   );
 }
-
-SortControls.propTypes = {
-  sortBy: PropTypes.string.isRequired,
-  setSortBy: PropTypes.func.isRequired,
-};
 
 export default SortControls;
