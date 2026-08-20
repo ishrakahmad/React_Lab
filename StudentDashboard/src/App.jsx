@@ -2,6 +2,7 @@ import DashboardHeader from './components/DashboardHeader';
 import StudentCard from './components/StudentCard';
 import StatBadge from './components/StatBadge';
 import SearchBar from './components/SearchBar';
+import SortControls from './components/SortControls';
 import { useEffect, useState } from 'react';
 
 const studentData = [
@@ -95,6 +96,7 @@ function App() {
   const [loading, setLoading] = useState(true);
   const [query, setQuery] = useState('');
   const [favoriteCount, setFavoriteCount] = useState(0);
+  const [sortBy, setSortBy] = useState('default');
 
   useEffect(() => {
     setTimeout(() => {
@@ -102,9 +104,6 @@ function App() {
       setLoading(false);
     }, 1500);
   }, []);
- 
-  
-
 
   function handleFavoriteChange(isFavorite) {
     if (isFavorite) {
@@ -120,10 +119,21 @@ function App() {
       student.major.toLowerCase().includes(query.toLowerCase())
   );
 
-
   useEffect(() => {
     document.title = `Dashboard — ${filteredStudents.length} Students`;
   }, [filteredStudents.length]);
+
+  const sortedStudents = [...filteredStudents].sort((a, b) => {
+    if (sortBy === 'name') {
+      return a.name.localeCompare(b.name);
+    }
+
+    if (sortBy === 'gpa') {
+      return b.gpa - a.gpa;
+    }
+
+    return 0;
+  });
 
   return (
     <>
@@ -138,6 +148,11 @@ function App() {
         <SearchBar
           query={query}
           setQuery={setQuery}
+        />
+
+        <SortControls
+          sortBy={sortBy}
+          setSortBy={setSortBy}
         />
 
         {loading ? (
@@ -159,7 +174,7 @@ function App() {
             </section>
 
             <section className="student-grid">
-              {filteredStudents.map((student) => (
+              {sortedStudents.map((student) => (
                 <StudentCard
                   key={student.id}
                   student={student}
