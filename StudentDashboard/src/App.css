@@ -542,3 +542,18 @@
 .student-form button:hover {
   opacity: 0.9;
 }
+
+.success-message {
+  margin: 0 0 18px;
+  padding: 12px 14px;
+  border-radius: 10px;
+  background: #dcfce7;
+  color: #166534;
+  font-size: 14px;
+  font-weight: 600;
+}
+
+.dark-theme .success-message {
+  background: #14532d;
+  color: #bbf7d0;
+}

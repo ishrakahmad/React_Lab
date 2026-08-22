@@ -1,4 +1,4 @@
-import { useContext, useState } from 'react';
+import { useContext, useEffect, useState } from 'react';
 import { StudentContext } from '../context/StudentContext';
 
 function StudentForm() {
@@ -14,6 +14,19 @@ function StudentForm() {
   const [courses, setCourses] = useState('');
 
   const [errors, setErrors] = useState({});
+  const [successMessage, setSuccessMessage] = useState('');
+
+  useEffect(() => {
+    if (!successMessage) {
+      return;
+    }
+
+    const timer = setTimeout(() => {
+      setSuccessMessage('');
+    }, 3000);
+
+    return () => clearTimeout(timer);
+  }, [successMessage]);
 
   function handleSubmit(event) {
     event.preventDefault();
@@ -75,6 +88,8 @@ function StudentForm() {
       setGpa('');
       setCourses('');
       setErrors({});
+
+      setSuccessMessage('Student added successfully!');
     }
   }
 
@@ -84,6 +99,12 @@ function StudentForm() {
       onSubmit={handleSubmit}
     >
       <h2>Add Student</h2>
+
+      {successMessage && (
+        <p className="success-message">
+          {successMessage}
+        </p>
+      )}
 
       <div className="form-group">
         <label>Full Name</label>
