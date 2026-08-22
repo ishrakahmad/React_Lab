@@ -8,12 +8,17 @@ function StudentCard(props) {
   const {
     favorites,
     handleFavoriteChange,
+    removeStudent,
   } = useContext(StudentContext);
 
   const favorite = favorites.includes(props.student.id);
 
   function handleFavorite() {
     handleFavoriteChange(props.student.id);
+  }
+
+  function handleRemove() {
+    removeStudent(props.student.id);
   }
 
   return (
@@ -67,6 +72,13 @@ function StudentCard(props) {
             />
           ))}
         </div>
+
+        <button
+          className="remove-button"
+          onClick={handleRemove}
+        >
+          Remove Student
+        </button>
       </div>
     </article>
   );

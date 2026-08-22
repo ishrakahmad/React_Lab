@@ -557,3 +557,35 @@
   background: #14532d;
   color: #bbf7d0;
 }
+
+
+.remove-button {
+  margin-top: 18px;
+  padding: 9px 14px;
+
+  border: 1px solid #ef4444;
+  border-radius: 8px;
+
+  background: transparent;
+  color: #ef4444;
+
+  font-size: 14px;
+  font-weight: 600;
+
+  cursor: pointer;
+}
+
+.remove-button:hover {
+  background: #ef4444;
+  color: #ffffff;
+}
+
+.dark-theme .remove-button {
+  border-color: #f87171;
+  color: #f87171;
+}
+
+.dark-theme .remove-button:hover {
+  background: #ef4444;
+  color: #ffffff;
+}

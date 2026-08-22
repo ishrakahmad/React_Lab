@@ -1,4 +1,4 @@
-import { createContext, useState } from 'react';
+import { createContext, useEffect, useState } from 'react';
 
 export const StudentContext = createContext();
 
@@ -89,13 +89,33 @@ const studentData = [
 ];
 
 function StudentProvider(props) {
-  const [students, setStudents] = useState([]);
+  const [students, setStudents] = useState(() => {
+    const savedStudents = localStorage.getItem('students');
+
+    if (savedStudents) {
+      return JSON.parse(savedStudents);
+    }
+
+    return [];
+  });
+
   const [query, setQuery] = useState('');
   const [sortBy, setSortBy] = useState('default');
   const [favorites, setFavorites] = useState([]);
 
+  useEffect(() => {
+    if (students.length > 0) {
+      localStorage.setItem(
+        'students',
+        JSON.stringify(students)
+      );
+    }
+  }, [students]);
+
   function loadStudents() {
-    setStudents(studentData);
+    if (students.length === 0) {
+      setStudents(studentData);
+    }
   }
 
   function addStudent(student) {
@@ -105,10 +125,26 @@ function StudentProvider(props) {
     ]);
   }
 
+  function removeStudent(studentId) {
+    setStudents((currentStudents) =>
+      currentStudents.filter(
+        (student) => student.id !== studentId
+      )
+    );
+
+    setFavorites((currentFavorites) =>
+      currentFavorites.filter(
+        (id) => id !== studentId
+      )
+    );
+  }
+
   function handleFavoriteChange(studentId) {
     setFavorites((currentFavorites) => {
       if (currentFavorites.includes(studentId)) {
-        return currentFavorites.filter((id) => id !== studentId);
+        return currentFavorites.filter(
+          (id) => id !== studentId
+        );
       }
 
       return [...currentFavorites, studentId];
@@ -124,6 +160,7 @@ function StudentProvider(props) {
         setStudents,
         loadStudents,
         addStudent,
+        removeStudent,
 
         query,
         setQuery,
